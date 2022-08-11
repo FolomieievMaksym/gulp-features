@@ -1,16 +1,18 @@
-
+// Подлкючение базовых стилей
 @import "./default/variables";
 @import "./default/null";
 @import "./default/mixins";
+@import "./default/function";
 @import "./default/fonts";
 @import "./default/global";
-
-// Подлкючение компонентов стилей
-@import "./components/header";
-@import "./components/footer";
-
-// Подключение других стилей
 @import "./default/text";
+
+// Header / Footer
+@import "./components/base-blocks/header";
+@import "./components/base-blocks/footer";
+
+// Подключение стилей компонентов
+@import "./components/btn";
 
 //Подключение стилей конкретной страницы
 // ! Переменовать текущий файл и файл подлючающий стили страницы ниже в "нужное имя", после чего удалить эту строку
