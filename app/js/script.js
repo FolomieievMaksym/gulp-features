@@ -49,6 +49,12 @@ window.addEventListener("load", () => {
 
    // ! Spoiler.html
    if (qa(".spoiler")) {
+      // ? Если нужно открыть только первый спойлер на странице. Можно прогнать циклом для остальных
+      if (qs(".spoiler").classList.contains("opened")) {
+         let spoilerWrapper = qa(".spoiler__wrapper")[0];
+         spoilerWrapper.style.height = spoilerWrapper.scrollHeight + "px";
+      }
+
       body.addEventListener("click", toggleSpoiler);
 
       function toggleSpoiler(e) {
