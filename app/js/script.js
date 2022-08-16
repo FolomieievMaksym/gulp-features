@@ -48,21 +48,17 @@ window.addEventListener("load", () => {
    }
 
    // ! Spoiler.html
-   if (qs(".spoiler")) {
-      body.addEventListener("click", switchCard);
+   if (qa(".spoiler")) {
+      body.addEventListener("click", toggleSpoiler);
 
-      function switchCard(e) {
-         const spoiler = qs(".spoiler"),
-            spoilerBody = qs(".spoiler__wrapper");
-
+      function toggleSpoiler(e) {
          if (e.target.closest(".spoiler__preview")) {
-            spoiler.classList.toggle("opened");
-            if (!spoiler.classList.contains("opened")) {
-               spoilerBody.style.height = null;
+            e.target.closest(".spoiler").classList.toggle("opened");
+            let spoilerWrapper = e.target.closest(".spoiler__preview").nextElementSibling;
+            if (!e.target.closest(".spoiler").classList.contains("opened")) {
+               spoilerWrapper.style.height = null;
             } else {
-               console.log("opened");
-               let spoilerWrapperScrollHeight = spoilerBody.scrollHeight;
-               spoilerBody.style.height = spoilerWrapperScrollHeight + "px";
+               spoilerWrapper.style.height = spoilerWrapper.scrollHeight + "px";
             }
          }
       }
