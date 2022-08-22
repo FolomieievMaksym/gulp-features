@@ -12,16 +12,12 @@
       z-index: 1;
    }
    &__container {
-      padding-left: 20px;
-      padding-right: 20px;
-      background-color: rgb(154, 151, 245);
    }
    &__body {
       min-height: 70px; // todo Указываем минимальную высоту шапки
       display: flex;
       justify-content: space-between; // todo Позиционируем элементы по оси Х
       align-items: center;
-      background-color: rgb(152, 216, 250);
    }
    &__logo {
       z-index: 2;

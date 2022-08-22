@@ -8,10 +8,8 @@ body {
    font-weight: 400;
 }
 [class*="__container"] {
-   width: 100%;
-   max-width: 1230px;
-   margin: 0 auto;
-   padding: 0 30px;
+   padding-left: percent(20, 375);
+   padding-right: percent(20, 375);
 }
 .wrapper {
    display: flex;
