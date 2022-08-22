@@ -5,26 +5,24 @@
 'title': 'Home',
 'swiper': '',
 })
-
 <body class="home">
-	<div class="wrapper">
-		@@include('./components/structure/_header.html')
-		<main>
-			<section class="hero">
-				<div class="hero__container">
-					@@include('./components/base/_btn.html', {
+   <div class="wrapper">
+      @@include('./components/structure/_header.html')
+      <main>
+         <section class="hero">
+            <div class="hero__container">
+               @@include('./components/base/_btn.html', {
 					'text': 'press me',
 					'modify': 'write-class-here'
 					})
 					@@include('./components/base/_spoiler.html')
-				</div>
-			</section>
-		</main>
-		@@include('./components/structure/_footer.html')
-	</div>
-	@@include('./components/structure/_scripts.html', {
+            </div>
+         </section>
+      </main>
+      @@include('./components/structure/_footer.html')
+   </div>
+   @@include('./components/structure/_scripts.html', {
 	'swiper': '',
 	})
 </body>
-
 </html>
