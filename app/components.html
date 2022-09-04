@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<!-- ! Изменить все "Start" на нужные данные, после чего удалить эту строку и переименовать текущий файл-->
 @@include('./components/structure/_head.html', {
 'lang':'en',
-'css': './css/start.min.css',
-'title': 'Start',
+'css': './css/components.min.css',
+'title': 'Components',
 'swiper': 'true',
 })
-<!-- todo указать нужное значение дял подключения\отключения свайпера -->
+<!-- todo указать нужное значение дял подключени\отключения свайпера -->
 
-<body class="start">
+<body class="components">
 	<div class="wrapper">
 		@@include('./components/structure/_header.html')
 		<main>
 			<section class="hero">
-				<div class="hero__container"></div>
+				<div class="hero__container">
+					@@include('./components/base/_btn.html', {
+					'text': 'press me',
+					'modify': 'write-class-here'
+					})
+					@@include('./components/base/_spoiler.html')
+				</div>
 			</section>
 		</main>
 		@@include('./components/structure/_footer.html')
