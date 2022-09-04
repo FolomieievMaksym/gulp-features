@@ -176,6 +176,7 @@ button {
 }
 
 body.home .home__container,
+.footer__container,
 .header__container {
   padding-left: 4.6875%;
   padding-right: 4.6875%;
@@ -614,6 +615,7 @@ main {
 
 @media (min-width: 769px) {
   body.home .home__container,
+  .footer__container,
   .header__container {
     padding-left: 2.5%;
     padding-right: 2.5%;
@@ -646,6 +648,7 @@ main {
 
 @media (min-width: 1200px) {
   body.home .home__container,
+  .footer__container,
   .header__container {
     padding-left: 3.4722222222%;
     padding-right: 3.4722222222%;
