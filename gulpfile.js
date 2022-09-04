@@ -17,14 +17,13 @@ const replace = require("gulp-replace");
 const fonter = require("gulp-fonter");
 const ttf2woff2 = require("gulp-ttf2woff2");
 const sourcemaps = require("gulp-sourcemaps");
-const concat = require("gulp-concat");
 // const { dest } = require("gulp");
+// const concat = require("gulp-concat");
 // const babel = require('gulp-babel')
 // const htmlmin = require('gulp-htmlmin')
 
 const paths = {
    html: {
-      // app: 'app/*.html',
       app: "app/**/*.html",
       new: "app/_*.html",
       components: "app/components/**/*.html",

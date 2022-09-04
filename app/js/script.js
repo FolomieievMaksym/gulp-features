@@ -1,7 +1,5 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", () => {});
-
 window.addEventListener("load", () => {
    const burger = document.querySelector(".burger"),
       header = document.querySelector(".header"),
@@ -51,12 +49,13 @@ window.addEventListener("load", () => {
    }
 
    // ! Spoiler
-   if (qa(".spoiler")) {
+
+   if (qs(".spoiler")) {
       // ? Если нужно открыть только первый спойлер на странице. Можно прогнать циклом для остальных
-      if (qs(".spoiler").classList.contains("opened")) {
-         let spoilerWrapper = qa(".spoiler__wrapper")[0];
-         spoilerWrapper.style.height = spoilerWrapper.scrollHeight + "px";
-      }
+      // if (qs(".spoiler").classList.contains("opened")) {
+      //    let spoilerWrapper = qa(".spoiler__wrapper")[0];
+      //    spoilerWrapper.style.height = spoilerWrapper.scrollHeight + "px";
+      // }
 
       body.addEventListener("click", toggleSpoiler);
 
@@ -73,7 +72,7 @@ window.addEventListener("load", () => {
       }
    }
 
-   const start = Date.now();
-   const end = Date.now();
-   console.log(end - start);
+   // const start = Date.now();
+   // const end = Date.now();
+   // console.log(end - start);
 });
