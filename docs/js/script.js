@@ -1,3 +1,7 @@
+"use strict";
+
+document.addEventListener("DOMContentLoaded", () => {});
+
 window.addEventListener("load", () => {
    const burger = document.querySelector(".burger"),
       header = document.querySelector(".header"),
@@ -45,4 +49,31 @@ window.addEventListener("load", () => {
          }
       }
    }
+
+   // ! Spoiler
+   if (qa(".spoiler")) {
+      // ? Если нужно открыть только первый спойлер на странице. Можно прогнать циклом для остальных
+      if (qs(".spoiler").classList.contains("opened")) {
+         let spoilerWrapper = qa(".spoiler__wrapper")[0];
+         spoilerWrapper.style.height = spoilerWrapper.scrollHeight + "px";
+      }
+
+      body.addEventListener("click", toggleSpoiler);
+
+      function toggleSpoiler(e) {
+         if (e.target.closest(".spoiler__preview")) {
+            e.target.closest(".spoiler").classList.toggle("opened");
+            let spoilerWrapper = e.target.closest(".spoiler__preview").nextElementSibling;
+            if (!e.target.closest(".spoiler").classList.contains("opened")) {
+               spoilerWrapper.style.height = null;
+            } else {
+               spoilerWrapper.style.height = spoilerWrapper.scrollHeight + "px";
+            }
+         }
+      }
+   }
+
+   const start = Date.now();
+   const end = Date.now();
+   console.log(end - start);
 });
