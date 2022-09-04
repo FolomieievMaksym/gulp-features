@@ -17,9 +17,9 @@ const replace = require("gulp-replace");
 const fonter = require("gulp-fonter");
 const ttf2woff2 = require("gulp-ttf2woff2");
 const sourcemaps = require("gulp-sourcemaps");
+const concat = require("gulp-concat");
 // const { dest } = require("gulp");
 // const babel = require('gulp-babel')
-// const concat = require('gulp-concat')
 // const htmlmin = require('gulp-htmlmin')
 
 const paths = {
@@ -64,14 +64,12 @@ function clean() {
 
 // Обработка html
 function html() {
-   return (
-      gulp
-         .src([paths.html.app, "!" + paths.html.new, "!" + paths.html.components])
-         .pipe(fileInclude())
-         .pipe(replace(/@img\//g, "img/"))
-         .pipe(gulp.dest(paths.html.dest))
-         .pipe(browsersync.stream())
-   );
+   return gulp
+      .src([paths.html.app, "!" + paths.html.new, "!" + paths.html.components])
+      .pipe(fileInclude())
+      .pipe(replace(/@img\//g, "img/"))
+      .pipe(gulp.dest(paths.html.dest))
+      .pipe(browsersync.stream());
 }
 
 function htmlComponents() {
@@ -115,14 +113,14 @@ function scss() {
 function js() {
    return (
       gulp
-         .src([paths.js.app, "!" + "app/js/**/*.min.js"])
+         .src([paths.js.app, "!" + "app/js/_*.js", "!" + "app/js/**/*.min.js"])
          .pipe(sourcemaps.init())
          // .pipe(babel({
          // 	presets: ['@babel/env'] //изменения джс файла для поддержки старых браузеров (ES5)
          // }))
          .pipe(gulp.dest(paths.js.dest)) //Выгрузка не сжатого файла
          .pipe(uglify())
-         // .pipe(concat('main.min.js')) //Склеивание всех .js файлов в app/js/ и переименование
+         // .pipe(concat("main.min.js")) //Склеивание всех .js файлов в app/js/ и переименование
          .pipe(
             rename({
                suffix: ".min", //добавление суффикса после имени
