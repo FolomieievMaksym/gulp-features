@@ -1,23 +1,23 @@
 const gulp = require("gulp");
+const del = require("del");
+const browsersync = require("browser-sync").create();
 const sass = require("gulp-sass")(require("sass"));
-var gcmq = require("gulp-group-css-media-queries");
+const gcmq = require("gulp-group-css-media-queries");
 const rename = require("gulp-rename");
 const cleanCSS = require("gulp-clean-css");
 const uglify = require("gulp-uglify");
 const autoprefixer = require("gulp-autoprefixer");
-const imagemin = require("gulp-imagemin");
 const newer = require("gulp-newer");
-const browsersync = require("browser-sync").create();
-const del = require("del");
-const webp = require("gulp-webp");
+const imagemin = require("gulp-imagemin");
 const imageminJpegRecompress = require("imagemin-jpeg-recompress");
 const pngquant = require("imagemin-pngquant");
+const webp = require("gulp-webp");
 const fileInclude = require("gulp-file-include");
 const replace = require("gulp-replace");
 const fonter = require("gulp-fonter");
 const ttf2woff2 = require("gulp-ttf2woff2");
 const sourcemaps = require("gulp-sourcemaps");
-const { dest } = require("gulp");
+// const { dest } = require("gulp");
 // const babel = require('gulp-babel')
 // const concat = require('gulp-concat')
 // const htmlmin = require('gulp-htmlmin')
@@ -43,7 +43,7 @@ const paths = {
          img: `app/img/**/*.{jpg,jpeg,gif,png}`,
          webp: "app/img/**/*.webp",
          svg: "app/img/**/*.svg",
-         video: `app/img/**/*.mp4`,
+         video: "app/img/**/*.{mp4}",
       },
       dest: "docs/img/",
    },
@@ -58,19 +58,16 @@ const paths = {
 
 // Очистить docs за исключением ./img в нём
 function clean() {
-   return del(["docs/*", "!docs/img", "!docs/fonts"]);
+   // return del(["docs/*", "!docs/img", "!docs/fonts"]);
+   return del("docs/*");
 }
 
 // Обработка html
 function html() {
    return (
       gulp
-         .src([
-            paths.html.app,
-            "!" + paths.html.new,
-            "!" + paths.html.components,
-         ])
-         // return gulp.src([paths.html.app, '!' + paths.html.new,])
+         // .src([paths.html.app, "!" + paths.html.new, "!" + paths.html.components])
+         .src([paths.html.app, "!" + paths.html.new])
          .pipe(fileInclude())
          .pipe(replace(/@img\//g, "img/"))
          .pipe(gulp.dest(paths.html.dest))
@@ -79,38 +76,40 @@ function html() {
 }
 
 function htmlComponents() {
-   return gulp
-      .src([paths.html.app, "!" + paths.html.new, paths.html.components])
-      .pipe(browsersync.stream());
+   // return gulp.src([paths.html.app, "!" + paths.html.new, paths.html.components]).pipe(browsersync.stream());
+   return gulp.src(paths.html.components).pipe(browsersync.stream());
 }
 
 // Обработка scss
 function scss() {
-   return gulp
-      .src([paths.scss.app, "!" + "app/scss/**/*.min.scss"])
-      .pipe(sass().on("error", sass.logError))
-      .pipe(
-         autoprefixer({
-            cascade: false,
-         })
-      )
-      .pipe(gcmq())
-      .pipe(gulp.dest(paths.scss.dest))
-      .pipe(
-         cleanCSS({
-            level: 2,
-         })
-      )
-      .pipe(
-         rename({
-            suffix: ".min",
-         })
-      )
-      .pipe(replace(/@img\//g, "../img/"))
-      .pipe(gulp.dest(paths.scss.dest))
-      .pipe(gulp.src("app/scss/**/*.min.css"))
-      .pipe(gulp.dest(paths.scss.dest))
-      .pipe(browsersync.stream());
+   return (
+      gulp
+         // .src([paths.scss.app, "!" + "app/scss/**/*.min.scss"])
+         .src(paths.scss.app)
+         .pipe(sass().on("error", sass.logError))
+         .pipe(
+            autoprefixer({
+               cascade: false,
+            })
+         )
+         .pipe(gcmq())
+         .pipe(gulp.dest(paths.scss.dest))
+         .pipe(
+            cleanCSS({
+               level: 2,
+            })
+         )
+         .pipe(
+            rename({
+               suffix: ".min",
+            })
+         )
+         .pipe(replace(/@img\//g, "../img/"))
+         .pipe(gulp.dest(paths.scss.dest))
+         .pipe(gulp.src("app/scss/**/*.min.css"))
+         .pipe(gulp.dest(paths.scss.dest))
+         .pipe(browsersync.stream())
+   );
 }
 
 // Обработка js
@@ -120,7 +119,7 @@ function js() {
          .src([paths.js.app, "!" + "app/js/**/*.min.js"])
          .pipe(sourcemaps.init())
          // .pipe(babel({
-         // 	presets: ['@babel/env'] //небольшое изменения джс файла на старый стандарт
+         // 	presets: ['@babel/env'] //изменения джс файла для поддержки старых браузеров (ES5)
          // }))
          .pipe(gulp.dest(paths.js.dest)) //Выгрузка не сжатого файла
          .pipe(uglify())
@@ -158,8 +157,8 @@ function img() {
       )
       .pipe(gulp.dest(paths.images.dest)) // Сохраняет сжатые изображения в конечную папку
       .pipe(gulp.src(paths.images.app.img))
+      .pipe(newer(paths.images.dest)) // был на 161 строке
       .pipe(webp())
-      .pipe(newer(paths.images.dest))
       .pipe(gulp.dest(paths.images.dest)) // Сохраняет webp изображение в конечную папку
       .pipe(gulp.src(paths.images.app.svg))
       .pipe(newer(paths.images.dest))
@@ -199,13 +198,12 @@ function watcher() {
          baseDir: "./docs",
       },
    });
-   // gulp.watch(paths.html.dest).on('change', browsersync.reload)
-   gulp.watch(paths.html.app, html);
+   gulp.watch([paths.html.app, "!" + paths.html.new], html);
    gulp.watch(paths.html.components, htmlComponents);
    gulp.watch(paths.scss.app, scss);
    gulp.watch(paths.js.app, js);
    gulp.watch(paths.images.app.img, img);
-   gulp.watch(paths.images.app.svg, img);
+   // gulp.watch(paths.images.app.svg, img);
 }
 
 exports.clean = clean;
@@ -216,14 +214,5 @@ exports.img = img;
 exports.fonts = fonts;
 exports.watcher = watcher;
 
-// exports.default = gulp.series(clean, html, fonts, gulp.parallel(scss, js, img), watcher) //Production
-// exports.default = gulp.series(clean, html, gulp.parallel(scss, js, img), watcher) //Что бы не ждать конвертацию шрифтов
-
-exports.default = gulp.series(html, gulp.parallel(scss, js), watcher);
-exports.build = gulp.series(
-   clean,
-   html,
-   fonts,
-   gulp.parallel(scss, js, img),
-   watcher
-);
+exports.default = gulp.series(gulp.parallel(html, scss, js), watcher);
+exports.build = gulp.series(clean, gulp.parallel(html, fonts, scss, js, img), watcher);
