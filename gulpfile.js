@@ -66,8 +66,7 @@ function clean() {
 function html() {
    return (
       gulp
-         // .src([paths.html.app, "!" + paths.html.new, "!" + paths.html.components])
-         .src([paths.html.app, "!" + paths.html.new])
+         .src([paths.html.app, "!" + paths.html.new, "!" + paths.html.components])
          .pipe(fileInclude())
          .pipe(replace(/@img\//g, "img/"))
          .pipe(gulp.dest(paths.html.dest))
@@ -157,8 +156,8 @@ function img() {
       )
       .pipe(gulp.dest(paths.images.dest)) // Сохраняет сжатые изображения в конечную папку
       .pipe(gulp.src(paths.images.app.img))
-      .pipe(newer(paths.images.dest)) // был на 161 строке
       .pipe(webp())
+      .pipe(newer(paths.images.dest)) // был на 161 строке
       .pipe(gulp.dest(paths.images.dest)) // Сохраняет webp изображение в конечную папку
       .pipe(gulp.src(paths.images.app.svg))
       .pipe(newer(paths.images.dest))
@@ -203,7 +202,7 @@ function watcher() {
    gulp.watch(paths.scss.app, scss);
    gulp.watch(paths.js.app, js);
    gulp.watch(paths.images.app.img, img);
-   // gulp.watch(paths.images.app.svg, img);
+   gulp.watch(paths.images.app.svg, img);
 }
 
 exports.clean = clean;
