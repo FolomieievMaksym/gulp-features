@@ -1,8 +1,8 @@
-var User = /** @class */ (function () {
-    function User(name) {
+class User {
+    constructor(name) {
         this.name = name;
     }
-    return User;
-}());
-var me = new User("Maksym");
+}
+const me = new User("Maksym");
 console.log('ts');
+console.log('some change');

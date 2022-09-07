@@ -145,6 +145,10 @@ function ts() {
       .pipe(
          typescript({
             noImplicitAny: true,
+            // removeComments: true, //delete comments
+            // target: "ES3", //default
+            // target: "ES5",
+            target: "ES6",
          })
       )
       .pipe(gulp.dest(paths.js.dest))

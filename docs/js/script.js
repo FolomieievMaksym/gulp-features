@@ -1,5 +1,4 @@
 "use strict";
-console.log("js");
 
 window.addEventListener("load", () => {
    const burger = document.querySelector(".burger"),
