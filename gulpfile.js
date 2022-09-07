@@ -17,6 +17,7 @@ const replace = require("gulp-replace");
 const fonter = require("gulp-fonter");
 const ttf2woff2 = require("gulp-ttf2woff2");
 const sourcemaps = require("gulp-sourcemaps");
+const typescript = require("gulp-typescript");
 // const { dest } = require("gulp");
 // const concat = require("gulp-concat");
 // const babel = require('gulp-babel')
@@ -34,7 +35,10 @@ const paths = {
       dest: "docs/css/",
    },
    js: {
-      app: "app/js/**/*.js",
+      app: {
+         js: "app/js/**/*.js",
+         ts: "app/js/**/*.ts",
+      },
       dest: "docs/js/",
    },
    images: {
@@ -112,7 +116,7 @@ function scss() {
 function js() {
    return (
       gulp
-         .src([paths.js.app, "!" + "app/js/_*.js", "!" + "app/js/**/*.min.js"])
+         .src([paths.js.app.js, "!" + "app/js/_*.js", "!" + "app/js/**/*.min.js"])
          .pipe(sourcemaps.init())
          // .pipe(babel({
          // 	presets: ['@babel/env'] //изменения джс файла для поддержки старых браузеров (ES5)
@@ -131,6 +135,28 @@ function js() {
          .pipe(gulp.dest(paths.js.dest))
          .pipe(browsersync.stream())
    );
+}
+
+// Обработка ts
+function ts() {
+   return gulp
+      .src(paths.js.app.ts)
+      .pipe(sourcemaps.init())
+      .pipe(
+         typescript({
+            noImplicitAny: true,
+         })
+      )
+      .pipe(gulp.dest(paths.js.dest))
+      .pipe(uglify())
+      .pipe(
+         rename({
+            suffix: ".min", //добавление суффикса после имени
+         })
+      )
+      .pipe(sourcemaps.write())
+      .pipe(gulp.dest(paths.js.dest))
+      .pipe(browsersync.stream());
 }
 
 // Обработка images
@@ -197,7 +223,8 @@ function watcher() {
    gulp.watch([paths.html.app, "!" + paths.html.new], html);
    gulp.watch(paths.html.components, htmlComponents);
    gulp.watch(paths.scss.app, scss);
-   gulp.watch(paths.js.app, js);
+   gulp.watch(paths.js.app.js, js);
+   gulp.watch(paths.js.app.ts, ts);
    gulp.watch(paths.images.app.img, img);
    gulp.watch(paths.images.app.svg, img);
 }
@@ -206,9 +233,10 @@ exports.clean = clean;
 exports.html = html;
 exports.scss = scss;
 exports.js = js;
+exports.ts = ts;
 exports.img = img;
 exports.fonts = fonts;
 exports.watcher = watcher;
 
-exports.default = gulp.series(gulp.parallel(html, scss, js), watcher);
-exports.build = gulp.series(clean, gulp.parallel(html, fonts, scss, js, img), watcher);
+exports.default = gulp.series(gulp.parallel(html, scss, js, ts), watcher);
+exports.build = gulp.series(clean, gulp.parallel(html, fonts, scss, js, ts, img), watcher);
