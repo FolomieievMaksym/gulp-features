@@ -42,10 +42,27 @@ interface Rect {
 	color?: string
 }
 class Square implements Rect {
-	readonly id: number
+	readonly id: number = 1
 	readonly width: number
 	readonly height: number
 	constructor(
-		color: string // тоже самое что указать в {this.color: string = color}
+		color?: string // тоже самое что указать в {this.color: string = color}
 	) { }
 }
+let someSquare = new Square('blue')
+
+class Animal {
+	protected voice: string = ''
+	public color: string = 'black'
+	private go() {
+		console.log('Go');
+
+	}
+}
+class Cat extends Animal {
+	public setVoice(voice: string): void {
+		this.voice = voice
+	}
+}
+let someCat = new Cat()
+someCat.setVoice('meow')
