@@ -66,3 +66,7 @@ class Cat extends Animal {
 }
 let someCat = new Cat()
 someCat.setVoice('meow')
+
+
+// nmp i -D ts-node установить, затем выполнить инструкции ниже
+// cd add => npx ts-node Cart.ts для вывода в консоль результата работы файла
