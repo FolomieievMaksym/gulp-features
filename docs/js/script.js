@@ -71,8 +71,4 @@ window.addEventListener("load", () => {
          }
       }
    }
-
-   // const start = Date.now();
-   // const end = Date.now();
-   // console.log(end - start);
 });

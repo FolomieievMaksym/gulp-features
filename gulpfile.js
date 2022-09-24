@@ -14,14 +14,15 @@ const pngquant = require("imagemin-pngquant");
 const webp = require("gulp-webp");
 const fileInclude = require("gulp-file-include");
 const replace = require("gulp-replace");
-const fonter = require("gulp-fonter");
+const ttf2woff = require("gulp-ttf2woff");
 const ttf2woff2 = require("gulp-ttf2woff2");
 const sourcemaps = require("gulp-sourcemaps");
 const typescript = require("gulp-typescript");
+const htmlmin = require("gulp-htmlmin");
+// const fonter = require("gulp-fonter");
 // const { dest } = require("gulp");
 // const concat = require("gulp-concat");
 // const babel = require('gulp-babel')
-// const htmlmin = require('gulp-htmlmin')
 
 const paths = {
    html: {
@@ -46,7 +47,7 @@ const paths = {
          img: `app/img/**/*.{jpg,jpeg,gif,png}`,
          webp: "app/img/**/*.webp",
          svg: "app/img/**/*.svg",
-         video: "app/img/**/*.{mp4}",
+         video: "app/img/**/*.{mp4,mkv}",
       },
       dest: "docs/img/",
    },
@@ -59,10 +60,14 @@ const paths = {
    },
 };
 
-// Очистить docs за исключением ./img в нём
+// Очистить docs
 function clean() {
-   // return del(["docs/*", "!docs/img", "!docs/fonts"]);
    return del("docs/*");
+}
+
+// Очистить docs за исключением ./img в нём
+function cleanSoft() {
+   return del(["docs/*", "!docs/img", "!docs/fonts"]);
 }
 
 // Обработка html
@@ -75,8 +80,18 @@ function html() {
       .pipe(browsersync.stream());
 }
 
+// Ужимаем html
+function htmlMin() {
+   return gulp
+      .src([paths.html.app, "!" + paths.html.new, "!" + paths.html.components])
+      .pipe(fileInclude())
+      .pipe(replace(/@img\//g, "img/"))
+      .pipe(htmlmin())
+      .pipe(gulp.dest(paths.html.dest))
+      .pipe(browsersync.stream());
+}
+
 function htmlComponents() {
-   // return gulp.src([paths.html.app, "!" + paths.html.new, paths.html.components]).pipe(browsersync.stream());
    return gulp.src(paths.html.components).pipe(browsersync.stream());
 }
 
@@ -119,14 +134,14 @@ function js() {
          .src([paths.js.app.js, "!" + "app/js/_*.js", "!" + "app/js/**/*.min.js"])
          .pipe(sourcemaps.init())
          // .pipe(babel({
-         // 	presets: ['@babel/env'] //изменения джс файла для поддержки старых браузеров (ES5)
+         // 	presets: ['@babel/env']
          // }))
-         .pipe(gulp.dest(paths.js.dest)) //Выгрузка не сжатого файла
+         .pipe(gulp.dest(paths.js.dest))
          .pipe(uglify())
          // .pipe(concat("main.min.js")) //Склеивание всех .js файлов в app/js/ и переименование
          .pipe(
             rename({
-               suffix: ".min", //добавление суффикса после имени
+               suffix: ".min",
             })
          )
          .pipe(gulp.dest(paths.js.dest))
@@ -138,30 +153,27 @@ function js() {
 }
 
 // Обработка ts
-function ts() {
-   return gulp
-      .src(paths.js.app.ts)
-      .pipe(sourcemaps.init())
-      .pipe(
-         typescript({
-            noImplicitAny: true,
-            // removeComments: true, //delete comments
-            // target: "ES3", //default
-            // target: "ES5",
-            target: "ES6",
-         })
-      )
-      .pipe(gulp.dest(paths.js.dest))
-      .pipe(uglify())
-      .pipe(
-         rename({
-            suffix: ".min", //добавление суффикса после имени
-         })
-      )
-      .pipe(sourcemaps.write())
-      .pipe(gulp.dest(paths.js.dest))
-      .pipe(browsersync.stream());
-}
+// function ts() {
+//    return gulp
+//       .src(paths.js.app.ts)
+//       .pipe(sourcemaps.init())
+//       .pipe(
+//          typescript({
+//             noImplicitAny: true,
+//             target: "ES6",
+//          })
+//       )
+//       .pipe(gulp.dest(paths.js.dest))
+//       .pipe(uglify())
+//       .pipe(
+//          rename({
+//             suffix: ".min",
+//          })
+//       )
+//       .pipe(sourcemaps.write())
+//       .pipe(gulp.dest(paths.js.dest))
+//       .pipe(browsersync.stream());
+// }
 
 // Обработка images
 function img() {
@@ -181,40 +193,39 @@ function img() {
             }),
          ])
       )
-      .pipe(gulp.dest(paths.images.dest)) // Сохраняет сжатые изображения в конечную папку
+      .pipe(gulp.dest(paths.images.dest))
       .pipe(gulp.src(paths.images.app.img))
       .pipe(webp())
-      .pipe(newer(paths.images.dest)) // был на 161 строке
-      .pipe(gulp.dest(paths.images.dest)) // Сохраняет webp изображение в конечную папку
+      .pipe(newer(paths.images.dest))
+      .pipe(gulp.dest(paths.images.dest))
       .pipe(gulp.src(paths.images.app.svg))
       .pipe(newer(paths.images.dest))
-      .pipe(gulp.dest(paths.images.dest)) // Сохраняет оригинальное svg-изображение в конечную папку
+      .pipe(gulp.dest(paths.images.dest))
       .pipe(gulp.src(paths.images.app.video))
       .pipe(newer(paths.images.dest))
-      .pipe(gulp.dest(paths.images.dest)); // Сохраняет оригинальное видео в конечную папку
+      .pipe(gulp.dest(paths.images.dest));
 }
+
 // Обработка шрифтов (конвертация из off в ttf, из ttf в woff,woff2)
 function fonts() {
-   return gulp
-      .src(paths.fonts.otf)
-      .pipe(
-         fonter({
-            formats: ["ttf"],
-         })
-      )
-      .pipe(gulp.dest(paths.fonts.app))
-      .pipe(gulp.src(paths.fonts.ttf))
-      .pipe(
-         fonter({
-            formats: ["woff"],
-         })
-      )
-      .pipe(gulp.dest(paths.fonts.dest))
-      .pipe(gulp.src(paths.fonts.ttf))
-      .pipe(ttf2woff2())
-      .pipe(gulp.dest(paths.fonts.dest))
-      .pipe(gulp.src(paths.fonts.icons))
-      .pipe(gulp.dest(paths.fonts.dest));
+   return (
+      gulp
+         // .src(paths.fonts.otf)
+         // .pipe(
+         //    fonter({
+         //       formats: ["ttf"],
+         //    })
+         // )
+         // .pipe(gulp.dest(paths.fonts.app))
+         .src(paths.fonts.ttf)
+         .pipe(ttf2woff())
+         .pipe(gulp.dest(paths.fonts.dest))
+         .pipe(gulp.src(paths.fonts.ttf))
+         .pipe(ttf2woff2())
+         .pipe(gulp.dest(paths.fonts.dest))
+         .pipe(gulp.src(paths.fonts.icons))
+         .pipe(gulp.dest(paths.fonts.dest))
+   );
 }
 
 // Наблюдение за изменениями в исходных файлах
@@ -228,19 +239,21 @@ function watcher() {
    gulp.watch(paths.html.components, htmlComponents);
    gulp.watch(paths.scss.app, scss);
    gulp.watch(paths.js.app.js, js);
-   gulp.watch(paths.js.app.ts, ts);
+   // gulp.watch(paths.js.app.ts, ts);
    gulp.watch(paths.images.app.img, img);
    gulp.watch(paths.images.app.svg, img);
 }
 
 exports.clean = clean;
+exports.cleanSoft = cleanSoft;
 exports.html = html;
+exports.htmlMin = htmlMin;
 exports.scss = scss;
 exports.js = js;
-exports.ts = ts;
+// exports.ts = ts;
 exports.img = img;
 exports.fonts = fonts;
 exports.watcher = watcher;
 
-exports.default = gulp.series(gulp.parallel(html, scss, js, ts), watcher);
-exports.build = gulp.series(clean, gulp.parallel(html, fonts, scss, js, ts, img), watcher);
+exports.default = gulp.series(cleanSoft, gulp.parallel(html, scss, js), watcher);
+exports.build = gulp.series(clean, gulp.parallel(htmlMin, fonts, scss, js, img));
