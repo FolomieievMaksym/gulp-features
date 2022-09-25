@@ -16,7 +16,7 @@
    line-height: calc($lh/$fz);
 }
 
-@mixin fl($fz: 16, $lh: 24) {
+@mixin fl($fz: 16, $lh: $fz * 1.25) {
    font-size: calc($fz / 16 * 1rem);
    line-height: calc($lh/$fz);
 }

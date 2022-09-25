@@ -175,7 +175,7 @@ button {
   padding: 0;
 }
 
-body.home .home__container,
+body.home .hero__container,
 .footer__container,
 .header__container {
   padding-left: 4.6875%;
@@ -220,7 +220,7 @@ body.lock {
 body {
   font-family: "CustomFont";
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.25;
 }
 
 .wrapper {
@@ -262,7 +262,7 @@ main {
 .header__logo {
   z-index: 2;
   font-size: 1.875rem;
-  line-height: 0.8;
+  line-height: 1.25;
   transition: all 0.3s ease;
 }
 
@@ -638,7 +638,7 @@ main {
 }
 
 @media (min-width: 769px) {
-  body.home .home__container,
+  body.home .hero__container,
   .footer__container,
   .header__container {
     padding-left: 2.5%;
@@ -671,7 +671,7 @@ main {
 }
 
 @media (min-width: 1200px) {
-  body.home .home__container,
+  body.home .hero__container,
   .footer__container,
   .header__container {
     padding-left: 3.4722222222%;

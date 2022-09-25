@@ -17,8 +17,8 @@ const replace = require("gulp-replace");
 const ttf2woff = require("gulp-ttf2woff");
 const ttf2woff2 = require("gulp-ttf2woff2");
 const sourcemaps = require("gulp-sourcemaps");
-const typescript = require("gulp-typescript");
 const htmlmin = require("gulp-htmlmin");
+// const typescript = require("gulp-typescript");
 // const fonter = require("gulp-fonter");
 // const { dest } = require("gulp");
 // const concat = require("gulp-concat");
@@ -86,7 +86,7 @@ function htmlMin() {
       .src([paths.html.app, "!" + paths.html.new, "!" + paths.html.components])
       .pipe(fileInclude())
       .pipe(replace(/@img\//g, "img/"))
-      .pipe(htmlmin())
+      .pipe(htmlmin({ collapseWhitespace: true }))
       .pipe(gulp.dest(paths.html.dest))
       .pipe(browsersync.stream());
 }
