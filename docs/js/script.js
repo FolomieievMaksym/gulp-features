@@ -14,6 +14,13 @@ window.addEventListener("load", () => {
       if (newEl) return newEl;
    }
 
+   // let thu = 0;
+   // setInterval(() => {
+   //    qs(".hero p").style.color = `hsl(${thu}, 100%, 50%)`;
+   //    thu++;
+   //    if (thu == 358) thu = 0;
+   //    console.log(thu);
+   // }, 10);
    // ! Burger
    if (burger) {
       body.addEventListener("click", burgerToggle);
