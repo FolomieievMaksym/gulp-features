@@ -13,3 +13,4 @@ import {} from "./lazy.js";
 import {} from "./spoiler.js";
 import {} from "./accordion.js";
 import {} from "./animate.js";
+import {} from "./pop-up.js";
