@@ -9,3 +9,4 @@
 //    if (newEl) return newEl;
 // }
 import {} from "./spoiler.js";
+import {} from "./accordion.js";

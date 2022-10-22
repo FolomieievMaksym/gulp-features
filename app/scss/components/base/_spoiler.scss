@@ -6,7 +6,7 @@
    color: #fff;
    border-radius: 10px;
    &__preview {
-      // cursor: pointer;
+      cursor: pointer; // ! Либо писать в стилях - либо есть готовая функция в джсе (но лучше стилях)
       padding-top: 20px;
       padding-bottom: 20px;
       position: relative;
@@ -18,9 +18,9 @@
       transition: all 0.3s ease;
    }
    &__wrapper {
-      // height: 0;
-      // overflow: hidden;
-      // transition: all 0.5s ease;
+      height: 0; // ! Либо писать в стилях - либо есть готовая функция в джсе (но лучше стилях)
+      overflow: hidden; // ! Либо писать в стилях - либо есть готовая функция в джсе (но лучше стилях)
+      transition: all 0.5s ease; // ! Либо писать в стилях - либо есть готовая функция в джсе (но лучше стилях)
    }
    &__body {
       padding-top: 30px;

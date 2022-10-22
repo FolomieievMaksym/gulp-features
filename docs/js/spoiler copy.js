@@ -1,6 +1,5 @@
 // Базовые стили для спойлера
 document.querySelectorAll("[data-spoiler]").forEach((el) => {
-   el.parentElement.addEventListener("click", toggleSpoiler);
    el.children[0].style.cursor = "pointer";
    el.children[1].style.height = "0px";
    el.children[1].style.overflow = "hidden";
@@ -13,16 +12,16 @@ if (document.querySelector("[data-spoiler].opened")) {
       el.children[1].style.height = el.children[1].scrollHeight + "px";
    });
 }
+document.body.addEventListener("click", toggleSpoiler);
 
 function toggleSpoiler(e) {
-   if (e.target.closest("[data-spoiler]  > div:first-child")) {
-      if (e.target.closest("[data-spoiler]").classList.contains("opened")) {
-         e.target.closest("[data-spoiler]").children[1].style.height = "0px";
-         e.target.closest("[data-spoiler]").classList.remove("opened");
+   if (e.target.closest("[data-spoiler]").children[0]) {
+      e.target.closest("[data-spoiler]").classList.toggle("opened");
+      let spoilerWrapper = e.target.closest("[data-spoiler]").children[1];
+      if (!e.target.closest("[data-spoiler].opened")) {
+         spoilerWrapper.style.height = "0px";
       } else {
-         e.target.closest("[data-spoiler]").children[1].style.height =
-            e.target.closest("[data-spoiler]").children[1].scrollHeight + "px";
-         e.target.closest("[data-spoiler]").classList.add("opened");
+         spoilerWrapper.style.height = spoilerWrapper.scrollHeight + "px";
       }
    }
 }

@@ -461,6 +461,7 @@ main {
 }
 
 .spoiler__preview {
+  cursor: pointer;
   padding-top: 20px;
   padding-bottom: 20px;
   position: relative;
@@ -471,6 +472,12 @@ main {
 
 .spoiler__icon {
   transition: all 0.3s ease;
+}
+
+.spoiler__wrapper {
+  height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
 }
 
 .spoiler__body {
