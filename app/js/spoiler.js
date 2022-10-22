@@ -1,10 +1,10 @@
 // Базовые стили для спойлера
 document.querySelectorAll("[data-spoiler]").forEach((el) => {
    el.parentElement.addEventListener("click", toggleSpoiler);
-   el.children[0].style.cursor = "pointer";
-   el.children[1].style.height = "0px";
-   el.children[1].style.overflow = "hidden";
-   el.children[1].style.transition = "height 0.5s ease";
+   // el.children[0].style.cursor = "pointer";
+   // el.children[1].style.height = "0px";
+   // el.children[1].style.overflow = "hidden";
+   // el.children[1].style.transition = "height 0.5s ease";
 });
 
 // ? Если нужно открыть спойлер при загрузке страницы - нужно добавить класс 'opened' к элементу data-spoiler

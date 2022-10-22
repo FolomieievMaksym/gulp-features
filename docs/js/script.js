@@ -8,5 +8,7 @@
 //    let newEl = document.querySelectorAll(element);
 //    if (newEl) return newEl;
 // }
+
+import {} from "./lazy.js";
 import {} from "./spoiler.js";
 import {} from "./accordion.js";
