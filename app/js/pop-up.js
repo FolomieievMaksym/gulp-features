@@ -2,7 +2,7 @@ if (document.querySelectorAll("[data-pop-up-open").length > 1) {
    document.querySelectorAll("[data-pop-up-open").forEach((el) => {
       el.addEventListener("click", showPopUp);
    });
-} else {
+} else if (document.querySelectorAll("[data-pop-up-open").length == 1) {
    document.querySelector("[data-pop-up-open").addEventListener("click", showPopUp);
 }
 function showPopUp(e) {
@@ -16,7 +16,7 @@ if (document.querySelectorAll("[data-pop-up").length > 1) {
    document.querySelectorAll("[data-pop-up").forEach((el) => {
       el.addEventListener("click", closePopUp);
    });
-} else {
+} else if (document.querySelectorAll("[data-pop-up").length == 1) {
    document.querySelector("[data-pop-up").addEventListener("click", closePopUp);
 }
 function closePopUp(e) {
