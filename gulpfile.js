@@ -47,7 +47,7 @@ const paths = {
          img: `app/img/**/*.{jpg,jpeg,gif,png}`,
          webp: "app/img/**/*.webp",
          svg: "app/img/**/*.svg",
-         video: "app/img/**/*.{mp4,mkv}",
+         video: "app/img/*.mp4",
       },
       dest: "docs/img/",
    },
@@ -97,34 +97,31 @@ function htmlComponents() {
 
 // Обработка scss
 function scss() {
-   return (
-      gulp
-         // .src([paths.scss.app, "!" + "app/scss/**/*.min.scss"])
-         .src(paths.scss.app)
-         .pipe(sass().on("error", sass.logError))
-         .pipe(
-            autoprefixer({
-               cascade: false,
-            })
-         )
-         .pipe(gcmq())
-         .pipe(gulp.dest(paths.scss.dest))
-         .pipe(
-            cleanCSS({
-               level: 2,
-            })
-         )
-         .pipe(
-            rename({
-               suffix: ".min",
-            })
-         )
-         .pipe(replace(/@img\//g, "../img/"))
-         .pipe(gulp.dest(paths.scss.dest))
-         .pipe(gulp.src("app/scss/**/*.min.css"))
-         .pipe(gulp.dest(paths.scss.dest))
-         .pipe(browsersync.stream())
-   );
+   return gulp
+      .src(paths.scss.app)
+      .pipe(sass().on("error", sass.logError))
+      .pipe(
+         autoprefixer({
+            cascade: false,
+         })
+      )
+      .pipe(gcmq())
+      .pipe(gulp.dest(paths.scss.dest))
+      .pipe(
+         cleanCSS({
+            level: 2,
+         })
+      )
+      .pipe(
+         rename({
+            suffix: ".min",
+         })
+      )
+      .pipe(replace(/@img\//g, "../img/"))
+      .pipe(gulp.dest(paths.scss.dest))
+      .pipe(gulp.src("app/scss/**/*.min.css"))
+      .pipe(gulp.dest(paths.scss.dest))
+      .pipe(browsersync.stream());
 }
 
 // Обработка js
@@ -255,5 +252,5 @@ exports.img = img;
 exports.fonts = fonts;
 exports.watcher = watcher;
 
-exports.default = gulp.series(cleanSoft, gulp.parallel(html, scss, js), watcher);
-exports.build = gulp.series(clean, gulp.parallel(htmlMin, fonts, scss, js, img));
+exports.default = gulp.series(cleanSoft, gulp.parallel(html, scss, js, img), watcher);
+exports.build = gulp.series(clean, gulp.parallel(htmlMin, fonts, scss, js, img), watcher);

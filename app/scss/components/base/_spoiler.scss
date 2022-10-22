@@ -6,7 +6,7 @@
    color: #fff;
    border-radius: 10px;
    &__preview {
-      cursor: pointer;
+      // cursor: pointer;
       padding-top: 20px;
       padding-bottom: 20px;
       position: relative;
@@ -18,9 +18,9 @@
       transition: all 0.3s ease;
    }
    &__wrapper {
-      height: 0;
-      overflow: hidden;
-      transition: all 0.5s ease;
+      // height: 0;
+      // overflow: hidden;
+      // transition: all 0.5s ease;
    }
    &__body {
       padding-top: 30px;

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 @@include('./components/structure/_head.html', {
 'lang':'en',
-'css': './css/home.min.css',
+'css': 'home',
 'title': 'Home',
 'swiper': 'true',
 })
@@ -13,7 +13,36 @@
 		<main>
 			<section class="hero">
 				<div class="hero__container">
-
+					<div data-spoiler class="spoiler opened">
+						<div class="spoiler__preview">
+							<h4 class="spoiler__title">Today’s total</h4>
+							<div class="spoiler__icon">
+								<svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M14.8788 1.46376L13.4339 3.6646e-07L7.43942 6.07249L1.44495 -6.31608e-08L-3.2942e-07 1.46376L7.43942 9L14.8788 1.46376Z" fill="white" />
+								</svg>
+							</div>
+						</div>
+						<div class="spoiler__wrapper">
+							<div class="spoiler__body">
+								Spoiler content here
+							</div>
+						</div>
+					</div>
+					<div data-spoiler class="spoiler">
+						<div class="spoiler__preview">
+							<h4 class="spoiler__title">Today’s total</h4>
+							<div class="spoiler__icon">
+								<svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M14.8788 1.46376L13.4339 3.6646e-07L7.43942 6.07249L1.44495 -6.31608e-08L-3.2942e-07 1.46376L7.43942 9L14.8788 1.46376Z" fill="white" />
+								</svg>
+							</div>
+						</div>
+						<div class="spoiler__wrapper">
+							<div class="spoiler__body">
+								Spoiler content here
+							</div>
+						</div>
+					</div>
 				</div>
 			</section>
 		</main>
@@ -21,6 +50,7 @@
 	</div>
 	@@include('./components/structure/_scripts.html', {
 	'swiper': 'true',
+	'script': 'script',
 	})
 	<!-- todo указать нужное значение дял подключения\отключения свайпера -->
 </body>
