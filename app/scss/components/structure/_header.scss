@@ -1,5 +1,12 @@
 .header {
-   position: relative;
+   background-color: grey;
+   position: fixed;
+   width: 100%;
+   opacity: 1;
+   transition: opacity 0.3s ease 0s;
+   &:hover {
+      opacity: 1 !important;
+   }
    &:before {
       // Накрывает менюшки с position: fixed
       content: "";

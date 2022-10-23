@@ -11,10 +11,10 @@
    }
 }
 %grad-bg {
-   background: linear-gradient(94.78deg, #68c9ff 9.27%, #d1b5ff 84.06%);
+   background: linear-gradient(90deg, #68c9ff 5%, #d1b5ff 90%);
 }
 %grad-text {
-   background: linear-gradient(94.78deg, #68c9ff 9.27%, #d1b5ff 84.06%);
+   background: linear-gradient(90deg, #68c9ff 5%, #d1b5ff 90%);
    -webkit-background-clip: text;
    -webkit-text-fill-color: transparent;
    background-clip: text;
@@ -34,4 +34,8 @@
    max-width: 105px;
    overflow: hidden;
    white-space: nowrap;
+}
+%text-stroke {
+   -webkit-text-fill-color: transparent;
+   -webkit-text-stroke: 1px red;
 }

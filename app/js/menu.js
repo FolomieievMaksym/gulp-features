@@ -27,3 +27,30 @@ function closeBurger() {
    burger.classList.remove("active");
    window.removeEventListener("scroll", closeBurger);
 }
+
+// ! <main></main>
+document.querySelector("main").style.paddingTop = header.scrollHeight + "px";
+
+// ! Header
+
+const headerToHide = document.querySelectorAll("[data-to-hide]");
+headerToHide.forEach((el) => {
+   el.style.overflow = "hidden";
+   el.style.transition = "height 0.3s ease 0s";
+});
+
+window.addEventListener("scroll", hideHeaderPart);
+hideHeaderPart();
+function hideHeaderPart() {
+   if (window.pageYOffset > header.scrollHeight / 2) {
+      headerToHide.forEach((el) => {
+         el.style.height = "0px";
+      });
+      header.style.opacity = "0.8";
+   } else if (window.pageYOffset < header.scrollHeight) {
+      headerToHide.forEach((el) => {
+         el.style.height = el.scrollHeight + "px";
+      });
+      header.style.opacity = "1";
+   }
+}

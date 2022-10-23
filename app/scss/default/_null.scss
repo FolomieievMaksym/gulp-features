@@ -66,9 +66,9 @@ a {
    color: inherit;
    text-decoration: none;
 }
-input {
+input,
+textarea {
    color: inherit;
-
    &::placeholder {
       color: inherit;
       font-size: 1em;
@@ -78,6 +78,7 @@ input {
    }
 }
 button {
+   cursor: pointer;
    color: inherit;
    border: none;
    background-color: transparent;
