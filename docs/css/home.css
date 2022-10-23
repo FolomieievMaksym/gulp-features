@@ -741,6 +741,10 @@ main {
   background-color: lightgrey;
 }
 
+body.home .hero__container {
+  padding-top: 30px;
+}
+
 @media (min-width: 769px) {
   body.home .hero__container,
   .footer__container,
