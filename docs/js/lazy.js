@@ -13,9 +13,9 @@ function showPictures(e) {
          // el.removeAttribute("style"); // ? А нужны ли вообще стили..?
       }
    });
-   document.querySelectorAll("[data-src-video]").forEach((el) => {
-      if (el.getBoundingClientRect().top <= viewportTop / 1) {
-         el.setAttribute("src", el.getAttribute("data-src-video"));
-      }
-   });
+   // document.querySelectorAll("[data-src-video]").forEach((el) => {
+   //    if (el.getBoundingClientRect().top <= viewportTop / 1) {
+   //       el.setAttribute("src", el.getAttribute("data-src-video"));
+   //    }
+   // });
 }
