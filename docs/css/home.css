@@ -464,6 +464,44 @@ main {
   }
 }
 
+.spoiler {
+  width: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: rgb(0, 0, 0);
+  color: #fff;
+  border-radius: 10px;
+}
+
+.spoiler__preview {
+  cursor: pointer;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spoiler__icon {
+  transition: all 0.3s ease;
+}
+
+.spoiler__wrapper {
+  height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.spoiler__body {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.spoiler.opened .spoiler__icon {
+  transform: rotate(180deg);
+}
+
 .pop-up-video {
   position: fixed;
   top: 0;
