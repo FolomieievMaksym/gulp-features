@@ -1,21 +1,21 @@
-let viewportTop = document.documentElement.clientHeight;
+let viewportHeight = document.documentElement.clientHeight;
 window.addEventListener("scroll", showPictures);
 showPictures();
 function showPictures(e) {
    document.querySelectorAll("[data-srcset]").forEach((el) => {
-      if (el.getBoundingClientRect().top <= viewportTop / 1) {
+      if (el.getBoundingClientRect().top <= viewportHeight * 1.1) {
          el.setAttribute("srcset", el.getAttribute("data-srcset"));
       }
    });
-   document.querySelectorAll("[data-src]").forEach((el) => {
-      if (el.getBoundingClientRect().top <= viewportTop / 1) {
-         el.setAttribute("src", el.getAttribute("data-src"));
+   document.querySelectorAll("[data-img-src]").forEach((el) => {
+      if (el.getBoundingClientRect().top <= viewportHeight * 1.1) {
+         el.setAttribute("src", el.getAttribute("data-img-src"));
          // el.removeAttribute("style"); // ? А нужны ли вообще стили..?
       }
    });
-   // document.querySelectorAll("[data-src-video]").forEach((el) => {
-   //    if (el.getBoundingClientRect().top <= viewportTop / 1) {
-   //       el.setAttribute("src", el.getAttribute("data-src-video"));
-   //    }
-   // });
+   document.querySelectorAll("[data-video-src]").forEach((el) => {
+      if (el.getBoundingClientRect().top <= viewportHeight * 1.1) {
+         el.setAttribute("src", el.getAttribute("data-video-src"));
+      }
+   });
 }
