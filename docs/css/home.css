@@ -289,17 +289,13 @@ main {
 
 .burger__wrapper:before {
   content: "";
-  -webkit-animation: burgerTopDisabled 0.7s ease 0s 1;
   animation: burgerTopDisabled 0.7s ease 0s 1;
-  -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
 
 .burger__wrapper:after {
   content: "";
-  -webkit-animation: burgerBottomDisabled 0.7s ease 0s 1;
   animation: burgerBottomDisabled 0.7s ease 0s 1;
-  -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
 
@@ -307,23 +303,6 @@ main {
   top: 50%;
   transform: translateY(-150%);
   transition: background-color 0.3s ease, transform 0.3s ease 0s;
-}
-
-@-webkit-keyframes burgerTopDisabled {
-  0% {
-    top: 50%;
-    transform: translateY(-50%) rotate(-45deg);
-  }
-
-  50% {
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  100% {
-    top: 0;
-    transform: translateY(0);
-  }
 }
 
 @keyframes burgerTopDisabled {
@@ -340,23 +319,6 @@ main {
   100% {
     top: 0;
     transform: translateY(0);
-  }
-}
-
-@-webkit-keyframes burgerBottomDisabled {
-  0% {
-    top: 50%;
-    transform: translateY(-250%) rotate(45deg);
-  }
-
-  50% {
-    top: 50%;
-    transform: translateY(-250%);
-  }
-
-  100% {
-    top: 100%;
-    transform: translateY(-300%);
   }
 }
 
@@ -378,9 +340,7 @@ main {
 }
 
 .burger.active .burger__wrapper:before {
-  -webkit-animation: burgerTopActive 0.7s ease 0s 1;
   animation: burgerTopActive 0.7s ease 0s 1;
-  -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
 
@@ -390,27 +350,8 @@ main {
 }
 
 .burger.active .burger__wrapper:after {
-  -webkit-animation: burgerBottomActive 0.7s ease 0s 1;
   animation: burgerBottomActive 0.7s ease 0s 1;
-  -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
-}
-
-@-webkit-keyframes burgerTopActive {
-  0% {
-    top: 0;
-    transform: translateY(0);
-  }
-
-  50% {
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  100% {
-    top: 50%;
-    transform: translateY(-50%) rotate(-45deg);
-  }
 }
 
 @keyframes burgerTopActive {
@@ -427,23 +368,6 @@ main {
   100% {
     top: 50%;
     transform: translateY(-50%) rotate(-45deg);
-  }
-}
-
-@-webkit-keyframes burgerBottomActive {
-  0% {
-    top: 100%;
-    transform: translateY(-300%);
-  }
-
-  50% {
-    top: 50%;
-    transform: translateY(-250%);
-  }
-
-  100% {
-    top: 50%;
-    transform: translateY(-250%) rotate(45deg);
   }
 }
 
