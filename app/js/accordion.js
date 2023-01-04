@@ -20,7 +20,7 @@ function toggleAccordion(e) {
          e.target.closest("[data-accordion]").classList.remove("opened");
          e.target.closest("[data-accordion]").children[1].style.height = "0px";
       } else {
-         document.querySelectorAll("[data-accordion]").forEach(function (el) {
+         document.querySelectorAll("[data-accordion]").forEach((el) => {
             el.classList.remove("opened");
             el.children[1].style.height = "0px";
          });

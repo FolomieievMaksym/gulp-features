@@ -12,6 +12,7 @@
 import {} from "./lazy.js";
 import {} from "./menu.js";
 import {} from "./spoiler.js";
+import {} from "./spoiler-absolute.js";
 import {} from "./accordion.js";
 import {} from "./animate.js";
 import {} from "./pop-up-video.js";

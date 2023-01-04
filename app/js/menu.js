@@ -46,7 +46,7 @@ function hideHeaderPart() {
       headerToHide.forEach((el) => {
          el.style.height = "0px";
       });
-      header.style.opacity = "0.8";
+      header.style.opacity = "0.9";
    } else if (window.pageYOffset < header.scrollHeight) {
       headerToHide.forEach((el) => {
          el.style.height = el.scrollHeight + "px";

@@ -7,7 +7,7 @@ function addMarquee() {
    if (window.innerWidth * 1.5 > marqueeWidth * marquee.length) {
       let newMarquee = marquee[marquee.length - 1].cloneNode(true);
       marquee[marquee.length - 1].parentElement.append(newMarquee);
-      console.log("added new marquee");
+      // console.log("added new marquee");
       addMarquee();
    }
 }
