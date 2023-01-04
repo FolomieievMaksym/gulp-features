@@ -16,4 +16,4 @@ import {} from "./accordion.js";
 import {} from "./animate.js";
 import {} from "./pop-up-video.js";
 import {} from "./pop-up.js";
-import {} from "./slider.js";
+import {} from "./marquee.js";
