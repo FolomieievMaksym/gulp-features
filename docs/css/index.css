@@ -719,26 +719,116 @@ main {
   background-color: lightgrey;
 }
 
+.marquee {
+  position: relative;
+}
+
+.marquee:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  background: red;
+}
+
 .marquee__wrapper {
   display: flex;
-  justify-content: center;
   align-items: center;
   -moz-column-gap: 30px;
   column-gap: 30px;
+  position: relative;
+  left: 0;
 }
 
 .marquee__item {
   font-size: 2em;
   white-space: nowrap;
-  padding: 6px 12px;
-  border-radius: 5px;
-  background-color: lightgrey;
-  position: relative;
-  left: 0px;
+  max-width: -moz-max-content;
+  max-width: max-content;
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 30px;
+  column-gap: 30px;
 }
 
 .marquee__item_colored {
   background-color: green;
+}
+
+.marquee__image {
+  width: 80px;
+}
+
+.marquee__image img {
+  max-width: 100%;
+}
+
+button[data-gift-start] {
+  display: block;
+  padding: 8px 16px;
+  background-color: red;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  text-transform: uppercase;
+  font-size: 2em;
+}
+
+.form-notification {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  padding: 10px;
+  transition: all 0.5s ease;
+}
+
+.form-notification.active {
+  opacity: 1;
+  pointer-events: all;
+  z-index: 101;
+}
+
+.form-notification__wrapper {
+  border: 1px solid red;
+  padding: 20px;
+  border-radius: 10px;
+  display: grid;
+  row-gap: 15px;
+}
+
+.form-notification p {
+  text-align: center;
+  color: #fff;
+}
+
+.form-notification button {
+  display: block;
+  padding: 8px 16px;
+  background-color: red;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  text-transform: uppercase;
+  font-size: 1.5em;
 }
 
 body.home .hero__container {

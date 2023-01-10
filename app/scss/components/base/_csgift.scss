@@ -1,0 +1,119 @@
+.marquee {
+   position: relative;
+   &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 100%;
+      transform: translate(-50%, -50%);
+      background: red;
+   }
+   // .marquee__wrapper
+   &__wrapper {
+      display: flex;
+      // justify-content: center;
+      align-items: center;
+      column-gap: 30px;
+      position: relative;
+      left: 0;
+      // animation: none 10s ease 0s 1 forwards;
+   }
+
+   // .marquee__item
+   &__item {
+      font-size: 2em;
+      white-space: nowrap;
+      // padding: 6px 12px;
+      // background-color: lightgrey;
+      // border-radius: 5px;
+      max-width: max-content;
+      display: flex;
+      align-items: center;
+      column-gap: 30px;
+      &_colored {
+         background-color: green;
+      }
+   }
+
+   &__image {
+      width: 80px;
+      img {
+         max-width: 100%;
+      }
+   }
+}
+// @keyframes marquee1 {
+//    0% {
+//       transform: translateX(0);
+//    }
+//    80% {
+//       transform: translateX(-849%);
+//    }
+//    100% {
+//       transform: translateX(-847%);
+//    }
+// }
+button[data-gift-start] {
+   display: block;
+   padding: 8px 16px;
+   background-color: red;
+   cursor: pointer;
+   color: #fff;
+   border-radius: 5px;
+   // max-width: min-content;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 20px;
+   text-transform: uppercase;
+   font-size: 2em;
+}
+.form-notification {
+   position: fixed;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   z-index: 0;
+   opacity: 0;
+   pointer-events: none;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: rgba(0, 0, 0, 0.8);
+   backdrop-filter: blur(2px);
+   padding: 10px;
+   transition: all 0.5s ease;
+   &.active {
+      opacity: 1;
+      pointer-events: all;
+      z-index: 101;
+   }
+   // .form-notification__wrapper
+
+   &__wrapper {
+      border: 1px solid red;
+      padding: 20px;
+      border-radius: 10px;
+      display: grid;
+      row-gap: 15px;
+   }
+   p {
+      text-align: center;
+      color: #fff;
+   }
+   button {
+      display: block;
+      padding: 8px 16px;
+      background-color: red;
+      cursor: pointer;
+      color: #fff;
+      border-radius: 5px;
+      // max-width: min-content;
+      margin-left: auto;
+      margin-right: auto;
+      text-transform: uppercase;
+      font-size: 1.5em;
+   }
+}
