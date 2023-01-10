@@ -766,7 +766,12 @@ main {
   max-width: 100%;
 }
 
-button[data-gift-start] {
+.button-wrapper {
+  transition: height 1s ease;
+  overflow: hidden;
+}
+
+.button-wrapper button[data-gift-start] {
   display: block;
   padding: 8px 16px;
   background-color: red;
@@ -775,7 +780,6 @@ button[data-gift-start] {
   border-radius: 5px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
   text-transform: uppercase;
   font-size: 2em;
 }
@@ -829,6 +833,134 @@ button[data-gift-start] {
   margin-right: auto;
   text-transform: uppercase;
   font-size: 1.5em;
+}
+
+.form {
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 0;
+  overflow: hidden;
+  transition: height 1s ease;
+}
+
+.form__wrapper {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form__body {
+  display: grid;
+  justify-items: center;
+  row-gap: 15px;
+  padding: 25px 15px;
+  border: 2px solid red;
+  border-radius: 5px;
+  position: relative;
+}
+
+.form__title {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.75em;
+  text-align: center;
+}
+
+.form__amount-left {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.25em;
+}
+
+.form__amount-left span {
+  color: red;
+}
+
+.form__inputs {
+  display: grid;
+  row-gap: 8px;
+}
+
+.form__inputs input {
+  display: block;
+  border: 1px solid red;
+  padding: 8px 16px;
+  border-radius: 3px;
+  min-width: 100px;
+}
+
+.form__inputs input::-moz-placeholder {
+  opacity: 0.7;
+}
+
+.form__inputs input::placeholder {
+  opacity: 0.7;
+}
+
+.form__inputs input[type=submit] {
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: transparent;
+  cursor: pointer;
+  background-color: red;
+  color: #fff;
+  white-space: pre-wrap;
+  filter: drop-shadow(0 0 2px red);
+}
+
+.form__bottom {
+  max-width: -moz-max-content;
+  max-width: max-content;
+  margin-top: -8px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+.timer {
+  margin-bottom: 10px;
+}
+
+.timer__content {
+  display: grid;
+  justify-items: center;
+  row-gap: 10px;
+}
+
+.timer__title {
+  font-weight: 700;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.timer__result {
+  font-size: 1.25em;
+  display: flex;
+  align-items: center;
+}
+
+.timer__result span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer__result span:nth-child(odd) {
+  background-color: red;
+  filter: drop-shadow(0 0 2px #000);
+  padding: 4px;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.timer__result span:nth-child(odd):not(:last-child) {
+  margin-right: 3px;
+}
+
+.timer__result span:nth-child(even):not(:last-child) {
+  margin-right: 6px;
 }
 
 body.home .hero__container {

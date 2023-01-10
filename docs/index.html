@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="./css/index.min.css">
 	<!-- <link rel="shortcut icon" href="img/favicon.ico"> -->
 	<title>Home</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <!-- todo указать нужное значение дял подключени\отключения свайпера -->
 
@@ -84,13 +85,55 @@
 		</div>
 	</div>
 </div>
-<button data-gift-start>Испытать судьбу</button>
+<div class="button-wrapper"><button data-gift-start>Испытать судьбу</button></div>
 <div class="form-notification">
 	<div class="form-notification__wrapper">
 		<p>Поздравляем, Вы выиграли какую-то хуйню!</p>
 		<button>Получить приз!</button>
 	</div>
 </div>
+<section class="form">
+	<form class="form__wrapper" method="post" action="order.php">
+		<?php if (isset($_GET["utm_source"])) : ?><input type="hidden" name="utm_source" value="<?=$_GET[" utm_source"];?>" />
+		<?php endif; ?>
+		<?php if (isset($_GET["utm_content"])) : ?><input type="hidden" name="utm_content" value="<?=$_GET[" utm_content"];?>" />
+		<?php endif; ?>
+		<?php if (isset($_GET["utm_term"])) : ?><input type="hidden" name="utm_term" value="<?=$_GET[" utm_term"];?>" />
+		<?php endif; ?>
+		<div class="form__body" id="toform-body">
+			<h4 class="form__title">Отримати по акції</h4>
+			<div class="form__amount-left">
+				<p>Залишилось <span>54</span> упаковки по акції</p>
+			</div>
+			<div class="timerdesc form__timer timer">
+				<div class="second-my timerhello timerhello_177 timer__wrapper">
+					<div class="second-my-content timer__content">
+						<h6 class="timer__title">
+							Часу залишилось:
+						</h6>
+						<p class="result timer__result">
+							<span class="result-hour items timer__item timer__item_hours">00</span>
+							<span class="dot">г.</span>
+							<span class="result-minute items timer__item timer__item_minutes">36</span>
+							<span class="dot">хв.</span>
+							<span class="result-second items timer__item timer__item_seconds">40</span>
+							<span class="dot">с.</span>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="form__inputs">
+				<input type="text" placeholder="Ім'я" name="name" required="required">
+				<input type="tel" placeholder="Телефон" name="phone" required="required" onclick="(function(event){if (!event.target.value.length){event.target.value='+38';}})(event)" oninput="(function(event){const x=event.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+			          event.target.value='+38' + (x[4] ? ' (' + x[3] + ') ' : '' + x[3]) + x[4] + (x[5] ? '-' + x[5] : '') + (x[6] ? '-' + x[6] : '');})(event)" pattern="^\+38\s[\(]?0(39|67|68|96|97|98|50|66|95|99|63|73|93|91|92|94)[\)]\s\d{3}[\-]\d{2}[\-]\d{2}$" title="Формат: +38 (0XX) XXX-XX-XX. Перевірте правильність кода оператора.">
+				<input type="submit" value="Отримати по акції ЦЕНА&nbsp;грн*">
+			</div>
+			<div class="form__bottom">
+				<p>*При замовленні курсу</p>
+			</div>
+		</div>
+	</form>
+</section>
 
 			</section>
 		</main>
