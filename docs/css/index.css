@@ -909,7 +909,9 @@ body.home .hero__container {
 
   .header-menu__wrapper {
     background-color: #fff;
-    padding-bottom: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
   }
 
   .header-menu ul {

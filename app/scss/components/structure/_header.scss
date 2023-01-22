@@ -71,7 +71,9 @@
    &__wrapper {
       @media (max-width: 768px) {
          background-color: $light;
-         padding-bottom: 50px;
+         margin-top: 20px;
+         margin-bottom: 20px;
+         padding-bottom: 20px;
       }
    }
    ul {
