@@ -1,5 +1,6 @@
 const body = document.querySelector("body");
 const header = document.querySelector(".header");
+const menu = document.querySelector(".header-menu");
 const burger = document.querySelector(".burger");
 // ! Burger
 
@@ -18,18 +19,23 @@ function burgerToggle(e) {
 function openBurger() {
    body.classList.add("lock");
    header.classList.add("active");
+   menu.classList.add("active");
    burger.classList.add("active");
+   // headerToHide.forEach((el) => {
+   //    el.style.height = el.scrollHeight + "px";
+   // });
    window.addEventListener("scroll", closeBurger);
 }
 function closeBurger() {
    body.classList.remove("lock");
    header.classList.remove("active");
+   menu.classList.remove("active");
    burger.classList.remove("active");
+   // headerToHide.forEach((el) => {
+   //    el.style.height = "0px";
+   // });
    window.removeEventListener("scroll", closeBurger);
 }
-
-// ! <main></main>
-document.querySelector("main").style.paddingTop = header.scrollHeight + "px";
 
 // ! Header
 
@@ -53,4 +59,10 @@ function hideHeaderPart() {
       });
       header.style.opacity = "1";
    }
+}
+
+// ! <main></main>
+document.querySelector("main").style.paddingTop = header.scrollHeight + "px";
+if (window.innerWidth < 769) {
+   menu.firstElementChild.style.paddingTop = header.scrollHeight + "px";
 }
